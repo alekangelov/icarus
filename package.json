@@ -2,16 +2,15 @@
   "name": "icarus",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
-  "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "scripts": {
+    "prepare": "husky install"
   },
+  "private": true,
   "lint-staged": {
     "*.{js,jsx,json,css,scss,md,ts,tsx,html,graphql}": [
-      "yarn format --uncommitted"
+      "yarn nx run affected:lint  -- --uncommitted --fix --parallel",
+      "yarn nx run format:write -- --uncommitted",
+      "git add"
     ]
   },
   "dependencies": {
@@ -43,7 +42,7 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.30.0",
     "eslint-plugin-react-hooks": "4.6.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "jest": "27.5.1",
     "lint-staged": "^13.0.3",
     "nx": "14.3.6",
