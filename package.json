@@ -8,8 +8,8 @@
   "private": true,
   "lint-staged": {
     "*.{js,jsx,json,css,scss,md,ts,tsx,html,graphql}": [
-      "yarn nx run affected:lint  -- --uncommitted --fix --parallel",
-      "yarn nx run format:write -- --uncommitted",
+      "yarn nx run affected:lint --uncommitted --fix --parallel",
+      "yarn nx run format:write --uncommitted",
       "git add"
     ]
   },
@@ -40,6 +40,7 @@
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "7.30.0",
     "eslint-plugin-react-hooks": "4.6.0",
     "husky": "^8.0.0",
