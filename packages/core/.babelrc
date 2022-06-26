@@ -8,5 +8,5 @@
       }
     ]
   ],
-  "plugins": []
+  "plugins": ["@vanilla-extract/babel-plugin"]
 }
