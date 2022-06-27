@@ -1,5 +1,12 @@
-import { createGlobalThemeContract } from '@vanilla-extract/css';
+import {
+  createGlobalThemeContract,
+  createGlobalTheme
+} from '@vanilla-extract/css';
+import { baseTheme } from './base';
+import { themeContact } from './contract';
 
-const contract = {};
+export const vars = createGlobalThemeContract(themeContact);
 
-export const vars = createGlobalThemeContract(contract);
+console.log(vars);
+
+createGlobalTheme(':root', vars, baseTheme);

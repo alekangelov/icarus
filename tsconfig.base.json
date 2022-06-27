@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@icarus/core": ["packages/core/src/index.ts"]
+      "@icarus/core": ["packages/core/src/index.ts"],
+      "@icarus/react": ["packages/react/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

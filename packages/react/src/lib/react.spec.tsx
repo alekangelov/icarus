@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Core from './core';
+import React from './react';
 
-describe('Core', () => {
+describe('React', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Core />);
+    const { baseElement } = render(<React />);
     expect(baseElement).toBeTruthy();
   });
 });
