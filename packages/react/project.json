@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/react",
-        "configFile": "@nxext/vite/plugins/vite-package",
+        "configFile": "./packages/react/vite.config.ts",
         "frameworkConfigFile": "@nxext/react/plugins/vite",
         "entryFile": "src/index.ts"
       }

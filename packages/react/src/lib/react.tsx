@@ -1,7 +1,9 @@
 import { button } from '@icarus/core';
 
-export function React() {
-  return <button className={button}></button>;
+export function Button() {
+  return (
+    <button className={button()}>
+      Denes nad makedonija
+    </button>
+  );
 }
-
-export default React;

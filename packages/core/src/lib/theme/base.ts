@@ -52,7 +52,7 @@ export const baseTheme: ThemeContract = {
   },
   breakpoints: {
     mobile: '0px',
-    tablet: '992px',
-    laptop: '1200px'
+    tablet: '568px',
+    laptop: '992px'
   }
 };
