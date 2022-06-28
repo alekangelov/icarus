@@ -1,4 +1,6 @@
-export const colors = {
+import Color from 'color';
+
+export const baseColors = {
   slate: {
     '50': '#f8fafc',
     '100': '#f1f5f9',
@@ -278,6 +280,35 @@ export type ColorType = {
   '900': string;
 };
 
+const generateColors = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const colors: any = {};
+  for (const color in baseColors) {
+    const currentColor: ColorType | string =
+      baseColors[color as keyof typeof baseColors];
+    if (typeof currentColor === 'string') {
+      colors[color] = currentColor;
+      continue;
+    }
+    for (const shade in currentColor) {
+      const cColor = Color(
+        currentColor[shade as keyof ColorType]
+      );
+      if (!colors[color as keyof typeof baseColors]) {
+        colors[color as keyof typeof baseColors] = {};
+      }
+      colors[color as keyof typeof baseColors][
+        shade as keyof ColorType
+      ] = `${cColor.red()},${cColor.green()},${cColor.blue()}`;
+    }
+  }
+  return colors as {
+    [key in keyof typeof baseColors]: ColorType;
+  };
+};
+
+export const colors = generateColors();
+
 type ColorsType = Record<string, ColorType | string>;
 
 export const flattenColors = (colors: ColorsType) => {
@@ -307,4 +338,14 @@ export const nullColor = {
   '700': null,
   '800': null,
   '900': null
+};
+
+export const parseColor = (color: string, alpha = 1) => {
+  if (alpha > 1) {
+    alpha = 1;
+  }
+  if (alpha < 0) {
+    alpha = 0;
+  }
+  return `rgba(${color}, ${alpha})`;
 };

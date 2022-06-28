@@ -8,5 +8,8 @@
       "import": "./react.es.js",
       "require": "./react.umd.js"
     }
+  },
+  "peerDependencies": {
+    "@icarus/core": "workspace:*"
   }
 }

@@ -1,8 +1,11 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": ["**/*", "node_modules"],
   "plugins": ["@nrwl/nx"],
-  "extends": ["plugin:@nrwl/nx/react", "plugin:prettier/recommended"],
+  "extends": [
+    "plugin:@nrwl/nx/react",
+    "plugin:prettier/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import viteNxProjectPaths from '@nxext/vite/src/executors/utils/nx-project-paths';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import path from 'path';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import react from '@vitejs/plugin-react';
 
 const workspaceRoot = path.resolve(__dirname, '../../');
 
@@ -10,8 +10,8 @@ export default defineConfig(() => {
   return {
     plugins: [
       viteNxProjectPaths({ workspaceRoot }),
-      tsconfigPaths(),
-      vanillaExtractPlugin()
+      vanillaExtractPlugin(),
+      react()
     ],
     build: {
       target: 'esnext',

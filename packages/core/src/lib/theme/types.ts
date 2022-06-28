@@ -42,6 +42,7 @@ export type ThemeContract = {
     };
   };
   spacing: {
+    none: string;
     small: string;
     medium: string;
     large: string;

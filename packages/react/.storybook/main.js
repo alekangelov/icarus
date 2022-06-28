@@ -24,7 +24,8 @@ module.exports = {
   ],
   addons: [
     ...rootMain.addons,
-    '@nrwl/react/plugins/storybook'
+    '@nrwl/react/plugins/storybook',
+    'storybook-dark-mode'
   ],
   async viteFinal(config, { configType }) {
     // return the customized config
@@ -35,17 +36,5 @@ module.exports = {
       ]
       // customize the Vite config here
     });
-  },
-  webpackFinal: async (config, { configType }) => {
-    // apply any global webpack configs that might have been specified in .storybook/main.js
-    if (rootMain.webpackFinal) {
-      config = await rootMain.webpackFinal(config, {
-        configType
-      });
-    }
-
-    // add your own webpack tweaks if needed
-
-    return config;
   }
 };

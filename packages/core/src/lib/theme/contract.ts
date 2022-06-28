@@ -47,6 +47,7 @@ const contractTemplate: OT = {
     }
   },
   spacing: {
+    none: null,
     small: null,
     medium: null,
     large: null,

@@ -20,7 +20,7 @@ export const baseTheme: ThemeContract = {
     },
     size: {
       small: '12px',
-      medium: '16px',
+      medium: '14px',
       large: '18px',
       xlarge: '24px',
       xxlarge: '32px',
@@ -43,6 +43,7 @@ export const baseTheme: ThemeContract = {
     }
   },
   spacing: {
+    none: '0px',
     small: '4px',
     medium: '8px',
     large: '16px',

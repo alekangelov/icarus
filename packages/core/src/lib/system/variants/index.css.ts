@@ -14,7 +14,6 @@ export const createColorVariants = <T>(
       key
     );
   });
-  console.log({ result });
   return result as {
     [K in keyof typeof colorObject]: T;
   };
@@ -37,5 +36,23 @@ export const createShapeVariants = <T>(
   });
   return result as {
     [key in keyof typeof radius]: T;
+  };
+};
+
+export const createSpaceVariants = <T>(
+  fn: (space: string, name: string) => T
+) => {
+  const result: Record<string, T> = {};
+  const { spacing } = vars;
+  Object.keys(spacing).forEach((key) => {
+    result[key as keyof typeof spacing] = fn(
+      spacing[
+        key as keyof typeof spacing
+      ] as unknown as string,
+      key
+    );
+  });
+  return result as {
+    [key in keyof typeof spacing]: T;
   };
 };
