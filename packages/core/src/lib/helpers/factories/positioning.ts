@@ -72,10 +72,5 @@ export const createColumns = <T>(
 
 const calcPercentage = (whole: number, part: number) => {
   const big = Big(part).div(whole).mul(100).toFixed(2, 2);
-  console.log({
-    part,
-    whole,
-    big
-  });
   return `${big}%`;
 };

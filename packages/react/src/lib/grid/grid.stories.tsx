@@ -11,16 +11,18 @@ export default {
 
 const Template: ComponentStory<typeof Grid> = (args) => (
   <Grid {...args}>
-    {Array.from({ length: 8 }).map((_, i) => (
-      <Grid.Item size="6" key={i} order={i}>
-        Alek
-      </Grid.Item>
-    ))}
+    <Grid.Item mobileSize="12" size="6">
+      Alek
+    </Grid.Item>
+    <Grid.Item mobileSize="12" size="6">
+      Alek
+    </Grid.Item>
   </Grid>
 );
 
 export const Primary: ComponentStory<typeof Grid> =
   Template.bind({});
+
 Primary.args = {
   gap: 'large',
   wrap: 'wrap'

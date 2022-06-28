@@ -26,7 +26,7 @@ export const baseColors = {
     '900': '#111827'
   },
   zinc: {
-    '50': '#fafafa',
+    '50': '#ffffff',
     '100': '#f4f4f5',
     '200': '#e4e4e7',
     '300': '#d4d4d8',
@@ -348,4 +348,29 @@ export const parseColor = (color: string, alpha = 1) => {
     alpha = 0;
   }
   return `rgba(${color}, ${alpha})`;
+};
+
+const colorReverseMap = {
+  '50': '900',
+  '100': '800',
+  '200': '700',
+  '300': '600',
+  '400': '500',
+  '500': '400',
+  '600': '300',
+  '700': '200',
+  '800': '100',
+  '900': '50'
+} as const;
+
+export const reverseColor = (
+  color: ColorType
+): ColorType => {
+  const result: Partial<ColorType> = {};
+  for (const shade in color) {
+    const cColor = color[shade as keyof ColorType];
+    result[colorReverseMap[shade as keyof ColorType]] =
+      cColor;
+  }
+  return result as ColorType;
 };

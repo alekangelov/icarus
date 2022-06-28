@@ -1,4 +1,8 @@
-import { globalStyle } from '@vanilla-extract/css';
+import {
+  CSSProperties,
+  globalStyle
+} from '@vanilla-extract/css';
+import { parseColor } from './colors';
 import { vars } from './theme.css';
 
 const resets = [
@@ -12,7 +16,8 @@ const resets = [
       font: 'inherit',
       verticalAlign: 'baseline',
       fontFamily: `${vars.text.font.body}, ${vars.text.font.base}`,
-      color: vars.color.onSurface
+      color: parseColor(vars.color.onSurface[50]),
+      backgroundColor: parseColor(vars.color.surface[50])
     }
   ],
   [
@@ -34,5 +39,5 @@ const resets = [
 ] as const;
 
 export const resetMap = resets.map(([selector, style]) =>
-  globalStyle(selector, style)
+  globalStyle(selector, style as CSSProperties)
 );

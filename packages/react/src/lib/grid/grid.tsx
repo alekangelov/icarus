@@ -21,6 +21,9 @@ const Item = ({
   justifySelf,
   size,
   order,
+  mobileSize,
+  tabletSize,
+  desktopSize,
   ...props
 }: ItemProps) => {
   return (
@@ -35,7 +38,10 @@ const Item = ({
         gridItem({
           alignSelf,
           justifySelf,
-          size
+          size,
+          mobileSize,
+          tabletSize,
+          desktopSize
         }),
         props.className
       )}

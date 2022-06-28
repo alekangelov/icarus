@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { colors, reverseColor } from './colors';
 import { ThemeContract } from './types';
 
 export const baseTheme: ThemeContract = {
@@ -9,7 +9,7 @@ export const baseTheme: ThemeContract = {
     success: colors.emerald,
     warning: colors.amber,
     danger: colors.rose,
-    onSurface: colors.zinc,
+    onSurface: reverseColor(colors.zinc),
     surface: colors.zinc
   },
   text: {
@@ -38,7 +38,7 @@ export const baseTheme: ThemeContract = {
       small: '0.25rem',
       medium: '0.5rem',
       large: '1rem',
-      round: '50%',
+      round: '999px',
       circle: '50%'
     }
   },

@@ -101,10 +101,10 @@ export const gridItem = recipe({
         paddingRight: calcPad
       } as ComplexStyleRule;
     }),
-    mobileSize: createColumns((size) => {
+    desktopSize: createColumns((size) => {
       return {
         '@media': {
-          'screen and (max-width: 768px)': {
+          'screen and (min-width: 993px)': {
             width: size,
             paddingLeft: calcPad,
             paddingRight: calcPad
@@ -123,10 +123,10 @@ export const gridItem = recipe({
         }
       } as ComplexStyleRule;
     }),
-    desktopSize: createColumns((size) => {
+    mobileSize: createColumns((size) => {
       return {
         '@media': {
-          'screen and (min-width: 993px)': {
+          'screen and (max-width: 576px)': {
             width: size,
             paddingLeft: calcPad,
             paddingRight: calcPad

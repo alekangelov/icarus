@@ -26,7 +26,7 @@ const colorVariants = createColorVariants((color) => {
       '&:focus': {
         boxShadow: `0px 0px 0px ${parseColor(
           color[600]
-        )}, 0px 0px 0px 3px ${parseColor(color[500], 0.2)}`
+        )}, 0px 0px 0px 3px ${parseColor(color[300], 1)}`
       },
       '&:hover': {
         background: parseColor(color[600]),
