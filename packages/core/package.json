@@ -1,0 +1,12 @@
+{
+  "name": "@icarus/core",
+  "version": "0.0.0",
+  "main": "./core.umd.js",
+  "module": "./core.es.js",
+  "exports": {
+    ".": {
+      "import": "./core.es.js",
+      "require": "./core.umd.js"
+    }
+  }
+}

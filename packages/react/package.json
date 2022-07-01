@@ -1,0 +1,12 @@
+{
+  "name": "@icarus/react",
+  "version": "0.0.1",
+  "main": "./react.umd.js",
+  "module": "./react.es.js",
+  "exports": {
+    ".": {
+      "import": "./react.es.js",
+      "require": "./react.umd.js"
+    }
+  }
+}
