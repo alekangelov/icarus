@@ -12,6 +12,11 @@ export const getColor = (color: keyof typeof vars.colors, alpha = 1) => {
   return parseColor(colorVariable, alpha);
 };
 
+export const getOnColorFromVar = (color: `var(--${string})`, alpha = 1) => {
+  const variableName = color.split('var(--')[1].slice(0, -1);
+  return getOnColor(variableName as any, alpha);
+};
+
 export const getOnColor = (color: keyof typeof vars.colors, alpha = 1) => {
   const onVar = `on${`${color.at(0)?.toUpperCase()}${color.slice(1)}`}`;
   return getColor(onVar as keyof typeof vars.colors, alpha);
