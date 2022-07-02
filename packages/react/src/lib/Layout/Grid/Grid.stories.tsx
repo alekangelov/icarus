@@ -1,5 +1,6 @@
-import { ColType, debugBox } from '@icarus/core';
+import { ColType } from '@icarus/core';
 import { ComponentMeta, Story } from '@storybook/react';
+import { Primary as Box } from '../Box/Box.stories';
 import { Grid } from './Grid';
 
 export default {
@@ -71,8 +72,6 @@ Secondary.args = {
   justify: 'start',
 };
 
-const Box = () => <div className={debugBox} />;
-
 const colArray = [
   '1',
   '2',
@@ -91,16 +90,19 @@ const colArray = [
 export const ColumnsDemo = () => {
   return (
     <Grid gap="md">
-      {colArray.map((col) => (
-        <>
-          <Grid.Item size={`${col}` as ColType}>
-            <Box />
-          </Grid.Item>
-          <Grid.Item size={`${12 - parseInt(col)}` as ColType}>
-            <Box />
-          </Grid.Item>
-        </>
-      ))}
+      {colArray.map(
+        (col) =>
+          col !== '12' && (
+            <>
+              <Grid.Item size={`${col}` as ColType}>
+                <Box background="primary" padding="lg" borderRadius="md" />
+              </Grid.Item>
+              <Grid.Item size={`${12 - parseInt(col)}` as ColType}>
+                <Box background="primary" padding="lg" borderRadius="md" />
+              </Grid.Item>
+            </>
+          )
+      )}
     </Grid>
   );
 };
@@ -108,6 +110,9 @@ export const ColumnsDemo = () => {
 export const OffsetDemo = () => {
   return (
     <Grid gap="md">
+      <Grid.Item size={'12'}>
+        <Box background="primary" padding="lg" borderRadius="md" />
+      </Grid.Item>
       {colArray.map(
         (col) =>
           12 - parseInt(col) > 0 && (
@@ -115,7 +120,7 @@ export const OffsetDemo = () => {
               offset={col as ColType}
               size={`${12 - parseInt(col)}` as ColType}
             >
-              <Box />
+              <Box background="primary" padding="lg" borderRadius="md" />
             </Grid.Item>
           )
       )}

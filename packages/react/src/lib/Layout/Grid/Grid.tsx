@@ -27,7 +27,6 @@ const GridContainer = forwardRef(
     ref: Ref<HTMLDivElement>
   ) => {
     const styles = mergeStyles(assignGap(gap), props.style);
-    console.log(styles);
     return (
       <div
         {...props}

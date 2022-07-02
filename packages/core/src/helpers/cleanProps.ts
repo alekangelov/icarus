@@ -9,7 +9,6 @@ const AriaRegex = /aria-([a-zA-Z0-9-]*)/;
 type AnyObject = Record<any, any>;
 
 export const cleanProps = <T extends AnyObject>(props: T) => {
-  console.log({ props });
   const result: AnyObject = {};
   for (const key in props) {
     if (
@@ -22,6 +21,5 @@ export const cleanProps = <T extends AnyObject>(props: T) => {
       result[key] = props[key];
     }
   }
-  console.log({ result });
   return result as T;
 };

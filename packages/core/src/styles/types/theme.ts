@@ -9,21 +9,10 @@ export type Colors = {
   surfaceMd: string;
   surfaceHv: string;
 };
-
-export type OnColors = {
-  onPrimary: string;
-  onSecondary: string;
-  onDanger: string;
-  onSuccess: string;
-  onWarning: string;
-  onInfo: string;
-  onSurface: string;
-  onSurfaceMd: string;
-  onSurfaceHv: string;
-};
-
 export interface Theme {
-  colors: Colors & OnColors;
+  colors: Colors;
+  onColors: Colors;
+  hoverColors: Colors;
   font: {
     size: {
       xs: string;

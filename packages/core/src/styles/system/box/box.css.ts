@@ -1,7 +1,10 @@
-import { ComplexStyleRule, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { forEachInObject } from '../../../helpers';
-import { vars } from '../../variables/index.css';
-import { getOnColor, getOnColorFromVar, parseColor } from '../colors';
+import { PaddingProps } from '../layout';
+import { AlignmentOptions } from './alignment.css';
+import { AspectRatio } from './helpers/aspect.css';
+import { BackgroundProps, BgColor, ColorProps } from './helpers/colors.css';
+import { BorderColor, BorderRadius, BorderSize } from './helpers/shape.css';
 
 const displays = {
   block: 'block',
@@ -39,31 +42,51 @@ export const display: Record<keyof typeof displayClassNames, string> =
     },
   });
 
-const backgroundsClasses = (() => {
-  const { colors } = vars;
-  type R = Record<keyof typeof colors, string>;
-  const backgroundClasses: Partial<R> = {};
-  forEachInObject(colors, (value, key) => {
-    if (key.indexOf('on') === 0)
-      backgroundClasses[key] = style({
-        backgroundColor: parseColor(value),
-        color: getOnColorFromVar(value),
-      });
-  });
-  return backgroundClasses as R;
-})();
+export type BoxProperties = {
+  /**
+   * The display property specifies the type of box, inline, block, table, grid, etc.
+   */
+  display?: keyof typeof display;
+  /**
+   * The display text color of the box.
+   */
+  color?: ColorProps;
+  /**
+   * The display background color of the box.
+   * It also affects the color of the text inside.
+   */
+  background?: BackgroundProps;
+  /**
+   * The background of the box, without affecting the text.
+   */
+  bgColor?: BgColor;
+  /**
+   * The alignment of the elements inside.
+   */
+  align?: AlignmentOptions;
+  /**
+   * The justification of the elements inside.
+   */
+  justify?: AlignmentOptions;
+  /**
+   * The aspect ratio of the box
+   */
+  aspectRatio?: AspectRatio[keyof AspectRatio];
+  /**
+   * The padding of the box.
+   */
+  padding?: PaddingProps | PaddingProps['padding'];
 
-export const backgrounds: Record<keyof typeof backgroundsClasses, string> =
-  new Proxy(backgroundsClasses, {
-    get(target, key) {
-      try {
-        if (!key) throw new Error('key is required');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return (target as any)[key];
-      } catch {
-        return target['surface'];
-      }
-    },
-  });
-
-export type DisplayProps = { display?: keyof typeof display };
+  /**
+   * The color of the border.
+   */
+  borderColor?: BorderColor;
+  /**
+   * The size of the border.
+   */
+  borderSize?: BorderSize;
+  /**
+   * The radius of the border.
+   */
+  borderRadius?: BorderRadius;
+};

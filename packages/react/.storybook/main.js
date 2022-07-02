@@ -8,18 +8,16 @@ const { resolve } = require('path');
 const {
   vanillaExtractPlugin
 } = require('@vanilla-extract/vite-plugin');
-// const reactDocgenTypescript =
-//   require('@joshwooding/vite-plugin-react-docgen-typescript').default;
 
 const workspaceRoot = resolve(__dirname, '../../../');
-console.log('workspaceRoot', workspaceRoot);
+
+const tsconfigPath = resolve(__dirname, './tsconfig.base.json');
 
 module.exports = {
   ...rootMain,
 
   core: {
     ...rootMain.core,
-    builder: '@storybook/builder-vite'
   },
 
   stories: [
@@ -38,6 +36,7 @@ module.exports = {
     reactDocgenTypescriptOptions: {
       tsconfigPath: './tsconfig.base.json',
       shouldExtractLiteralValuesFromEnum: false,
+      esModuleInterop: false,
       propFilter: (prop) =>
         prop.parent
           ? !/node_modules/.test(prop.parent.fileName)
@@ -50,7 +49,8 @@ module.exports = {
       plugins: [
         viteNxProjectPaths({ workspaceRoot }),
         vanillaExtractPlugin()
-      ]
+      ],
+
       // customize the Vite config here
     });
   }

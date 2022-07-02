@@ -1,8 +1,9 @@
-import { Colors, OnColors } from '../types/theme';
+import { Colors } from '../types/theme';
 
 const colorContracts: {
   default: Colors;
-  on: OnColors;
+  on: Colors;
+  hover: Colors;
 } = {
   default: {
     primary: 'primary',
@@ -16,23 +17,33 @@ const colorContracts: {
     surfaceHv: 'surface-hv',
   },
   on: {
-    onPrimary: 'on-primary',
-    onSecondary: 'on-secondary',
-    onDanger: 'on-danger',
-    onSuccess: 'on-success',
-    onWarning: 'on-warning',
-    onInfo: 'on-info',
-    onSurface: 'on-surface',
-    onSurfaceMd: 'on-surface-md',
-    onSurfaceHv: 'on-surface-hv',
+    primary: 'on-primary',
+    secondary: 'on-secondary',
+    danger: 'on-danger',
+    success: 'on-success',
+    warning: 'on-warning',
+    info: 'on-info',
+    surface: 'on-surface',
+    surfaceMd: 'on-surface-md',
+    surfaceHv: 'on-surface-hv',
+  },
+  hover: {
+    primary: 'primary-hv',
+    secondary: 'secondary-hv',
+    danger: 'danger-hv',
+    success: 'success-hv',
+    warning: 'warning-hv',
+    info: 'info-hv',
+    surface: 'surface-hv',
+    surfaceMd: 'surface-md-hv',
+    surfaceHv: 'surface-hv-hv',
   },
 };
 
 export const contract = {
-  colors: {
-    ...colorContracts.default,
-    ...colorContracts.on,
-  },
+  colors: colorContracts.default,
+  onColors: colorContracts.on,
+  hoverColors: colorContracts.hover,
   font: {
     size: {
       xs: 'font-xs',
@@ -51,6 +62,7 @@ export const contract = {
     },
   },
   spacing: {
+    none: 'spacing-none',
     xs: 'spacing-xs',
     sm: 'spacing-sm',
     md: 'spacing-md',

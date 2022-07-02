@@ -1,9 +1,10 @@
-type ClassName = string | string[] | undefined | false;
+type ClassName = string | undefined | false;
 type ObjectNotation = {
   [key: string]: boolean;
 };
-type ArrayNotation = ClassName[];
-type ArraySingleNotation = Array<string | undefined | false>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyObject = Record<any, any>;
 
 /**
  * Use to combine multiple class names into a single "React" class name.
@@ -19,27 +20,27 @@ type ArraySingleNotation = Array<string | undefined | false>;
  * @param args Can be a list of strings or an object with keys and values.
  * @returns A normalized list of classnames
  */
-export const clsx = <T extends [ObjectNotation] | ArrayNotation>(
+export const clsx = <T extends Array<ObjectNotation | ClassName>>(
   ...args: T
 ): string => {
-  if (args.length === 0) {
-    return '';
+  const classes = [];
+  for (const arg of args) {
+    if (!arg) continue;
+    if (typeof arg === 'string') {
+      classes.push(arg);
+      continue;
+    }
+    if (typeof arg === 'object') {
+      for (const key in arg) {
+        if ((arg as AnyObject)[key]) classes.push(key);
+      }
+    }
   }
-  if (args.length === 1) {
-    const objectN = args[0] as ObjectNotation;
-    return Object.entries(objectN).reduce(
-      (acc, [key, value]) => `${acc}${value ? ` ${key}` : ''}`,
-      ''
-    );
-  }
-  const arrayN = (args as unknown as ArraySingleNotation)
-    .flat()
-    .reduce((acc, value) => `${acc}${value ? ` ${value}` : ''}`, '');
-  return arrayN ? arrayN.trim() : '';
+  console.log(classes);
+  return classes.join(' ');
 };
 
 export const mergeStyles = (...args: (object | undefined)[]) => {
-  console.log(args);
   return args.reduce(
     (acc, value) => ({
       ...acc,

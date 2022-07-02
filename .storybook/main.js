@@ -1,3 +1,11 @@
+const { mergeConfig } = require("vite")
+
+const { resolve } = require("path")
+
+const alias = {
+  '@icarus/core': resolve(__dirname, '../packages/core/src/index.ts')
+}
+
 module.exports = {
   stories: [],
   addons: ['@storybook/addon-essentials', '@storybook/builder-vite'],
@@ -13,4 +21,10 @@ module.exports = {
   //   // Return the altered config
   //   return config;
   // },
+  viteFinal: (config, { configType }) => {
+    console.log(alias)
+    return mergeConfig(config, {
+      alias,
+    })
+  }
 };
