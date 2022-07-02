@@ -5,7 +5,7 @@ import { parseColor } from '../colors';
 export const debugBox = style({
   display: 'flex',
   width: '100%',
-  height: 24,
   backgroundColor: parseColor(vars.colors.primary),
   borderRadius: vars.border.radius.md,
+  padding: vars.spacing.md,
 });

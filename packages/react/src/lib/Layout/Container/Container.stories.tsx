@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ColumnsDemo } from '../grid/Grid.stories';
+import { ColumnsDemo } from '../Grid/Grid.stories';
 import { Container } from './Container';
 
 export default {
-  name: 'Container',
+  name: 'Layout/Container',
   component: Container,
 } as ComponentMeta<typeof Container>;
 

@@ -3,7 +3,7 @@ import { ComponentMeta, Story } from '@storybook/react';
 import { Grid } from './Grid';
 
 export default {
-  title: 'Grid',
+  title: 'Layout/Grid',
   component: Grid,
 } as ComponentMeta<typeof Grid>;
 

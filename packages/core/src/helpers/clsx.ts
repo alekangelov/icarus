@@ -1,8 +1,9 @@
-type ClassName = string | undefined | false;
+type ClassName = string | string[] | undefined | false;
 type ObjectNotation = {
   [key: string]: boolean;
 };
 type ArrayNotation = ClassName[];
+type ArraySingleNotation = Array<string | undefined | false>;
 
 /**
  * Use to combine multiple class names into a single "React" class name.
@@ -31,11 +32,10 @@ export const clsx = <T extends [ObjectNotation] | ArrayNotation>(
       ''
     );
   }
-  const arrayN = args as ArrayNotation;
-  return arrayN.reduce(
-    (acc, value) => `${acc}${value ? ` ${value}` : ''}`,
-    ''
-  ) as string;
+  const arrayN = (args as unknown as ArraySingleNotation)
+    .flat()
+    .reduce((acc, value) => `${acc}${value ? ` ${value}` : ''}`, '');
+  return arrayN ? arrayN.trim() : '';
 };
 
 export const mergeStyles = (...args: (object | undefined)[]) => {
