@@ -12,7 +12,7 @@
         "packageJson": "package.json",
         "assets": ["assets"],
         "entryFile": "src/index.ts",
-        "configFile": "@nxext/vite/plugins/vite-package"
+        "configFile": "./packages/core/vite.config.ts"
       }
     },
     "lint": {

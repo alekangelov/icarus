@@ -19,5 +19,5 @@
       "@icarus/react": ["packages/react/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", "**/node_modules/*"]
 }

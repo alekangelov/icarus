@@ -2,10 +2,13 @@ import {
   createGlobalTheme,
   createGlobalThemeContract,
 } from '@vanilla-extract/css';
-import { prepColor } from '../system/colors';
 import { colors } from './colors';
 import { contract } from './contract';
+import Color from 'color';
 
+const prepColor = (color: Color) => {
+  return color.rgb().array().join(', ');
+};
 export const vars = createGlobalThemeContract(contract);
 
 const colorVars = {
@@ -56,39 +59,43 @@ createGlobalTheme(':root', vars, {
     },
   },
   spacing: {
-    xs: 'spacing-xs',
-    sm: 'spacing-sm',
-    md: 'spacing-md',
-    lg: 'spacing-lg',
-    xl: 'spacing-xl',
-    xxl: 'spacing-xxl',
-    xxxl: 'spacing-xxxl',
+    xs: '4px',
+    sm: '8px',
+    md: '12px',
+    lg: '16px',
+    xl: '24px',
+    xxl: '36px',
+    xxxl: '48px',
   },
   border: {
     radius: {
-      none: 'radius-none',
-      sm: 'radius-sm',
-      md: 'radius-md',
-      lg: 'radius-lg',
-      xl: 'radius-xl',
-      xxl: 'radius-xxl',
-      round: 'radius-round',
+      none: '0px',
+      sm: '4px',
+      md: '8px',
+      lg: '12px',
+      xl: '32px',
+      xxl: '48px',
+      round: '999px',
     },
     size: {
-      none: 'border-size-none',
-      sm: 'border-size-sm',
-      md: 'border-size-md',
-      lg: 'border-size-lg',
-      xl: 'border-size-xl',
+      none: '0px',
+      sm: '1px',
+      md: '2px',
+      lg: '4px',
+      xl: '8px',
     },
     color: colorVars.default,
   },
   elevation: {
-    none: 'elevation-none',
-    sm: 'elevation-sm',
-    md: 'elevation-md',
-    lg: 'elevation-lg',
-    xl: 'elevation-xl',
-    xxl: 'elevation-xxl',
+    none: '4px',
+    sm: '12px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
+  },
+  transition: {
+    speed: '0.2s',
+    easing: 'ease-in-out',
   },
 });

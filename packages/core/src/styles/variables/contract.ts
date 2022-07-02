@@ -1,84 +1,9 @@
-type Colors = {
-  primary: string;
-  secondary: string;
-  danger: string;
-  success: string;
-  warning: string;
-  info: string;
-  surface: string;
-  surfaceMd: string;
-  surfaceHv: string;
-};
+import { Colors, OnColors } from '../types/theme';
 
-type OnColors = {
-  onPrimary: string;
-  onSecondary: string;
-  onDanger: string;
-  onSuccess: string;
-  onWarning: string;
-  onInfo: string;
-  onSurface: string;
-  onSurfaceHv: string;
-};
-
-export interface Theme {
-  colors: Colors & OnColors;
-  font: {
-    size: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-      xxl: string;
-      xxxl: string;
-    };
-    weight: {
-      light: string;
-      regular: string;
-      medium: string;
-      bold: string;
-    };
-  };
-  spacing: {
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-    xxxl: string;
-  };
-  border: {
-    radius: {
-      none: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-      xxl: string;
-      round: string;
-    };
-    size: {
-      none: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-    };
-    color: Colors;
-  };
-  elevation: {
-    none: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-  };
-}
-
-const colorContracts = {
+const colorContracts: {
+  default: Colors;
+  on: OnColors;
+} = {
   default: {
     primary: 'primary',
     secondary: 'secondary',
@@ -160,5 +85,9 @@ export const contract = {
     lg: 'elevation-lg',
     xl: 'elevation-xl',
     xxl: 'elevation-xxl',
+  },
+  transition: {
+    speed: 'transition-speed',
+    easing: 'transition-easing',
   },
 };
