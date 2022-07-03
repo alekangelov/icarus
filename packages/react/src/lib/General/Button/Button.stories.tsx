@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { LoadingIcon } from '../Icons/Loading';
-import { Button } from './Button';
+import { LoadingIcon } from '../../Icons/Loading';
+import { Button } from '.';
 
 export default {
   title: 'General/Button',

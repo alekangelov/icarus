@@ -14,12 +14,12 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import { mergeRefs } from '../internal/mergeRefs';
-import { Spacing } from '../Layout/Spacing';
+import { mergeRefs } from '../../internal/mergeRefs';
+import { Spacing } from '../../Layout/Spacing';
 
 type Additionals = {
   icon?: JSX.Element;
-  iconPosition: 'left' | 'right';
+  iconPosition?: 'left' | 'right';
   gap?: GapSize;
   disabled?: boolean;
 };
