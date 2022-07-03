@@ -145,6 +145,11 @@ createGlobalTheme(':root', vars, {
     speed: '0.15s',
     easing: 'cubic-bezier(0.46, 0.03, 0.52, 0.96)',
   },
+  zIndex: {
+    default: '0',
+    modal: '10',
+    overlay: '20',
+  },
 });
 
 export type GapSize = keyof typeof vars.spacing;

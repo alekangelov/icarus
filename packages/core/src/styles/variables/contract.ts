@@ -115,4 +115,9 @@ export const contract = {
     speed: 'transition-speed',
     easing: 'transition-easing',
   },
+  zIndex: {
+    default: 'z-index-default',
+    modal: 'z-index-modal',
+    overlay: 'z-index-overlay',
+  },
 };

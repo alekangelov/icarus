@@ -40,6 +40,7 @@ export const loadingParent = {
     height: '100%',
     overflow: 'hidden',
     background: 'transparent',
+    zIndex: vars.zIndex.modal,
   }),
   fullscreen: style({
     background: parseColor(vars.onColors.surface, 0.1),
