@@ -8,13 +8,23 @@ import Color from 'color';
 
 const prepColor = (
   colorPrep: Color,
-  { makeHover } = {
+  {
+    makeHover,
+    makeActive,
+  }: {
+    makeHover?: boolean;
+    makeActive?: boolean;
+  } = {
+    makeActive: false,
     makeHover: false,
   }
 ) => {
   let color = colorPrep;
   if (makeHover) {
-    color = color.darken(0.2);
+    color = color.darken(0.1);
+  }
+  if (makeActive) {
+    color = color.darken(0.4);
   }
   return color
     .rgb()
@@ -59,12 +69,24 @@ const colorVars = {
     surfaceHv: prepColor(colors.greyHv, { makeHover: true }),
     surfaceMd: prepColor(colors.mdGrey, { makeHover: true }),
   },
+  activeColors: {
+    primary: prepColor(colors.blue, { makeActive: true }),
+    secondary: prepColor(colors.teal, { makeActive: true }),
+    danger: prepColor(colors.rose, { makeActive: true }),
+    success: prepColor(colors.emerald, { makeActive: true }),
+    warning: prepColor(colors.mdGrey, { makeActive: true }),
+    info: prepColor(colors.sky, { makeActive: true }),
+    surface: prepColor(colors.white, { makeActive: true }),
+    surfaceHv: prepColor(colors.greyHv, { makeActive: true }),
+    surfaceMd: prepColor(colors.mdGrey, { makeActive: true }),
+  },
 };
 
 createGlobalTheme(':root', vars, {
   colors: colorVars.colors,
   onColors: colorVars.onColors,
   hoverColors: colorVars.hoverColors,
+  activeColors: colorVars.activeColors,
   font: {
     size: {
       xs: '8px',

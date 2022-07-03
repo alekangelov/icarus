@@ -36,7 +36,6 @@ export const clsx = <T extends Array<ObjectNotation | ClassName>>(
       }
     }
   }
-  console.log(classes);
   return classes.join(' ');
 };
 
@@ -48,4 +47,8 @@ export const mergeStyles = (...args: (object | undefined)[]) => {
     }),
     {}
   );
+};
+
+export const getInitialClass = (classes: string) => {
+  return classes.split(' ').at(0) || '';
 };

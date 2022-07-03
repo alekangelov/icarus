@@ -1,11 +1,27 @@
-import { button, ButtonProps, clsx, GapSize } from '@icarus/core';
-import { Children, forwardRef, PropsWithChildren, Ref } from 'react';
+import {
+  button,
+  ButtonProps,
+  clsx,
+  GapSize,
+  disabled,
+  createButtonRippleEvent,
+} from '@icarus/core';
+import {
+  Children,
+  forwardRef,
+  PropsWithChildren,
+  Ref,
+  useEffect,
+  useRef,
+} from 'react';
+import { mergeRefs } from '../internal/mergeRefs';
 import { Spacing } from '../Layout/Spacing';
 
 type Additionals = {
   icon?: JSX.Element;
   iconPosition: 'left' | 'right';
   gap?: GapSize;
+  disabled?: boolean;
 };
 
 type Props = PropsWithChildren<
@@ -22,13 +38,20 @@ export const Button = forwardRef(
       floating,
       radius,
       icon,
-      iconPosition,
+      iconPosition = 'left',
       gap,
+      disabled: isDisabled,
       ...props
     }: Props,
     ref: Ref<HTMLButtonElement>
   ) => {
     const hasOneChild = Children.count(props.children) === 1;
+    const innerRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+      const { event, cleanup } = createButtonRippleEvent();
+      innerRef?.current?.addEventListener('click', event);
+      return () => cleanup();
+    }, [innerRef]);
     return (
       <button
         {...props}
@@ -39,15 +62,17 @@ export const Button = forwardRef(
               hasOneChild &&
               !size?.includes('Symmetric') &&
               typeof props.children !== 'string'
-                ? (`${size || 'small'}Symmetric` as any)
+                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (`${size || 'small'}Symmetric` as any)
                 : size,
             elevation,
             fullWidth,
             floating,
             radius: hasOneChild && !radius ? 'round' : radius,
-          })
+          }),
+          isDisabled && disabled
         )}
-        ref={ref}
+        ref={mergeRefs([ref, innerRef])}
       >
         <Spacing gap={gap || 'md'} align="center" justify="center">
           {icon && iconPosition === 'left' && icon}

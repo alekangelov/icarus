@@ -18,5 +18,20 @@ Primary.args = {
 export const Icon = Template.bind({});
 
 Icon.args = {
-  children: <LoadingIcon />,
+  children: <LoadingIcon size="xl" />,
+};
+
+export const IconAndLabel = Template.bind({});
+
+IconAndLabel.args = {
+  children: 'I am button',
+  icon: <LoadingIcon />,
+};
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  disabled: true,
+  children: 'I am button',
+  icon: <LoadingIcon />,
 };

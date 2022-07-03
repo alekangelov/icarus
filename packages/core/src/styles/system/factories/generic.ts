@@ -2,6 +2,8 @@ import { ComplexStyleRule } from '@vanilla-extract/css';
 import { forEachInObject } from '../../../helpers';
 
 type ValueOf<T> = T[keyof T];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyObject = Record<string, any>;
 
 export const createFactory = <T, X>(
   object: T,
@@ -14,7 +16,37 @@ export const createFactory = <T, X>(
   return r as T;
 };
 
-export const createStyleFactory = <T, X extends ComplexStyleRule>(
+type addPrefix<TKey, TPrefix extends string> = TKey extends string
+  ? `${TPrefix}${TKey}`
+  : never;
+
+const transformKeysInObject = <
+  O extends AnyObject = AnyObject,
+  P extends string = ''
+>(
+  object: O,
+  prefix: P
+) => {
+  const newObject = {} as Record<addPrefix<keyof O, P>, string>;
+  forEachInObject(object, (value, key) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (newObject as any)[`${prefix}${String(key)}` as any] = value;
+  });
+  return newObject;
+};
+
+export const createStyleFactory = <
+  T,
+  X extends ComplexStyleRule,
+  Prefix extends string = ''
+>(
   object: T,
-  fn: (value: ValueOf<T>, key: keyof T) => X
-) => createFactory(object, (value, key) => fn(value, key));
+  fn: (value: ValueOf<T>, key: keyof T) => X,
+  prefix?: Prefix
+) => {
+  const newObject = createFactory(object, fn);
+  if (prefix) {
+    return transformKeysInObject(newObject, prefix);
+  }
+  return newObject;
+};

@@ -1,7 +1,15 @@
-export const LoadingIcon = () => {
-  return (
+import { icon } from '@icarus/core';
+import React, { forwardRef } from 'react';
+import { IconProps } from './types';
+
+export const LoadingIcon = forwardRef(
+  ({ size, color, ...props }: IconProps, ref: React.Ref<SVGSVGElement>) => (
     <svg
-      className="feather feather-loader"
+      {...props}
+      className={icon({
+        size,
+        color,
+      })}
       fill="none"
       height="24"
       stroke="currentColor"
@@ -11,6 +19,7 @@ export const LoadingIcon = () => {
       viewBox="0 0 24 24"
       width="24"
       xmlns="http://www.w3.org/2000/svg"
+      ref={ref}
     >
       <line x1="12" x2="12" y1="2" y2="6" />
       <line x1="12" x2="12" y1="18" y2="22" />
@@ -21,5 +30,5 @@ export const LoadingIcon = () => {
       <line x1="4.93" x2="7.76" y1="19.07" y2="16.24" />
       <line x1="16.24" x2="19.07" y1="7.76" y2="4.93" />
     </svg>
-  );
-};
+  )
+);

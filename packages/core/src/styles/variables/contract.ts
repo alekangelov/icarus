@@ -4,6 +4,7 @@ const colorContracts: {
   default: Colors;
   on: Colors;
   hover: Colors;
+  active: Colors;
 } = {
   default: {
     primary: 'primary',
@@ -38,12 +39,24 @@ const colorContracts: {
     surfaceMd: 'surface-md-hv',
     surfaceHv: 'surface-hv-hv',
   },
+  active: {
+    primary: 'primary-ac',
+    secondary: 'secondary-ac',
+    danger: 'danger-ac',
+    success: 'success-ac',
+    warning: 'warning-ac',
+    info: 'info-ac',
+    surface: 'surface-ac',
+    surfaceMd: 'surface-md-ac',
+    surfaceHv: 'surface-hv-ac',
+  },
 };
 
 export const contract = {
   colors: colorContracts.default,
   onColors: colorContracts.on,
   hoverColors: colorContracts.hover,
+  activeColors: colorContracts.active,
   font: {
     size: {
       xs: 'font-xs',

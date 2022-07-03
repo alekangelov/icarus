@@ -1,4 +1,6 @@
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { getInitialClass } from '../../../../helpers';
 import { vars } from '../../../variables/index.css';
 import { parseColor } from '../../colors';
 import { createStyleFactory } from '../../factories/generic';
@@ -7,6 +9,7 @@ import { createTransition } from '../../factories/transition';
 const colorVar = '--button-color';
 const textColorVar = '--button-text-color';
 const hoverColorVar = '--button-hover-color';
+const activeColorsVar = '--button-active-color';
 
 export const button = recipe({
   base: {
@@ -14,8 +17,10 @@ export const button = recipe({
     outline: 'none',
     border: 'none',
     cursor: 'pointer',
+    overflow: 'hidden',
     color: parseColor(`var(${textColorVar})`),
     backgroundColor: parseColor(`var(${colorVar})`),
+
     transition: createTransition(
       'color',
       'backgroundColor',
@@ -28,9 +33,8 @@ export const button = recipe({
         transform: `translate(0px, calc(0px - ${vars.spacing.xs}))`,
       },
       '&:active': {
-        filter: 'brightness(0.8)',
+        background: parseColor(`var(${activeColorsVar})`),
         transform: `translate(0px, calc(${vars.spacing.none}))`,
-
         transition: 'none',
       },
     },
@@ -41,6 +45,8 @@ export const button = recipe({
         [colorVar]: value,
         [textColorVar]: vars.onColors[key],
         [hoverColorVar]: vars.hoverColors[key],
+        [activeColorsVar]: vars.activeColors[key],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
     }),
     size: {
@@ -70,22 +76,19 @@ export const button = recipe({
       },
     },
     elevation: createStyleFactory(vars.elevation, (value) => ({
-      boxShadow: `0px 0px ${value} calc((0px - ${value}) / 2) ${parseColor(
+      boxShadow: `0px 0px ${value} calc((0px - ${value}) / 1) ${parseColor(
         `var(${colorVar})`,
         0.2
       )}`,
       selectors: {
         '&:hover': {
-          boxShadow: `0px ${value} ${value} calc((0px - ${value}) / 1.5)  ${parseColor(
+          boxShadow: `0px ${value} ${value} calc((0px - ${value}) / 2)  ${parseColor(
             `var(${colorVar})`,
-            0.5
+            0.3
           )}`,
         },
         '&:active': {
-          boxShadow: `0px 0px ${value} calc((0px - ${value}) / 1.5) ${parseColor(
-            `var(${colorVar})`,
-            0
-          )}`,
+          boxShadow: `0px 0px 0px 0px ${parseColor(`var(${colorVar})`, 0)}`,
         },
       },
     })),
@@ -119,6 +122,31 @@ export const button = recipe({
     elevation: 'md',
     fullWidth: false,
   },
+});
+
+const rippleAnimation = keyframes({
+  '0%': {
+    opacity: 0.5,
+    transform: 'translate(-50%,-50%) scale(0)',
+  },
+  '100%': {
+    opacity: 0,
+    transform: 'translate(-50%,-50%) scale(2)',
+  },
+});
+
+export const buttonRipple = style({
+  position: 'absolute',
+  width: '100%',
+  aspectRatio: '1 / 1',
+  borderRadius: '100%',
+  transformOrigin: 'center center',
+  background: parseColor(vars.colors.surface),
+  animation: `${rippleAnimation} 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)`,
+});
+
+export const globalButton = globalStyle(`${getInitialClass(button())} *`, {
+  pointerEvents: 'none',
 });
 
 export type ButtonProps = Parameters<typeof button>[0];
