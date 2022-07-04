@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "predeploy": "cross-env BASE_URL=/icarus/react yarn nx run react:export",
+    "predeploy": "cross-env BASE_URL=/icarus/react/ yarn nx run react:export",
     "deploy": "gh-pages -d dist/storybook"
   },
   "private": true,
@@ -67,6 +67,7 @@
     "ts-node": "~10.8.0",
     "typescript": "~4.7.2",
     "url-loader": "^3.0.0",
+    "usehooks-ts": "^2.6.0",
     "vite": "^2.9.9",
     "vite-plugin-eslint": "1.3.0"
   },

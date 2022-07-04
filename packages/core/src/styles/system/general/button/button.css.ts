@@ -17,15 +17,17 @@ export const button = recipe({
     outline: 'none',
     border: 'none',
     cursor: 'pointer',
+    position: 'relative',
     overflow: 'hidden',
     color: parseColor(`var(${textColorVar})`),
     backgroundColor: parseColor(`var(${colorVar})`),
-
     transition: createTransition(
       'color',
       'backgroundColor',
       'boxShadow',
-      'transform'
+      'transform',
+      'filter',
+      'opacity'
     ),
     selectors: {
       '&:hover': {

@@ -7,7 +7,6 @@ const getRelativeMouseCoordinates = (event: MouseEvent) => {
   const rect = (event.target as HTMLButtonElement).getBoundingClientRect();
   const x = event.clientX - rect.left; //x position within the element.
   const y = event.clientY - rect.top; //y position within the element.
-  console.log({ x, y });
   return {
     x,
     y,
