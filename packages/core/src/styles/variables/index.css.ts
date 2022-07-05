@@ -89,19 +89,20 @@ createGlobalTheme(':root', vars, {
   activeColors: colorVars.activeColors,
   font: {
     size: {
-      xs: '8px',
-      sm: '10px',
-      md: '14px',
-      lg: '18px',
-      xl: '24px',
-      xxl: '36px',
-      xxxl: '38px',
+      xs: '0.8rem',
+      sm: '0.9rem',
+      md: '1rem',
+      lg: '1.5rem',
+      xl: '2rem',
+      xxl: '2.2rem',
+      xxxl: '2.5rem',
     },
     weight: {
       light: '100',
       regular: '400',
       medium: '600',
       bold: '800',
+      heavy: '900',
     },
   },
   spacing: {

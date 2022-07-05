@@ -119,7 +119,7 @@ export const button = recipe({
   defaultVariants: {
     color: 'primary',
     size: 'medium',
-    radius: 'md',
+    radius: 'sm',
     floating: false,
     elevation: 'md',
     fullWidth: false,

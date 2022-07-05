@@ -17,5 +17,11 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   title: 'I am a title',
-  content: <>I am a dialog</>,
+  content: (
+    <>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
+      praesentium voluptas autem mollitia quia quos labore sequi corrupti velit
+      unde. Eum cum explicabo ipsa amet autem architecto atque in dolore?
+    </>
+  ),
 };

@@ -37,7 +37,7 @@ const transformKeysInObject = <
 
 export const createStyleFactory = <
   T,
-  X extends ComplexStyleRule,
+  X extends ComplexStyleRule | string,
   Prefix extends string = ''
 >(
   object: T,

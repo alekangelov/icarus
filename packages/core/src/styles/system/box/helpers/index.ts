@@ -56,12 +56,9 @@ export const getBoxProperties = (props: BoxProperties): string => {
     classNames.push(borderRadius[props.borderRadius]);
   }
   const pureClassNames = classNames.filter(Boolean);
-  console.log({ pureClassNames });
   if (pureClassNames.length === 0) {
     return '';
   }
-  console.log(classNames, ...classNames);
   const r = clsx(...classNames);
-  console.log({ r });
   return r;
 };

@@ -2,6 +2,7 @@ import {
   clsx,
   dialog,
   DialogPositions,
+  DIALOG_ANIMATION_LENGTH,
   getDialogAnimation,
   getDialogPosition,
 } from '@icarus/core';
@@ -38,7 +39,6 @@ const DialogBase = ({
   className,
   toggle,
 }: PropsWithChildren<P2>) => {
-  console.log('content', children);
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ left: '0px', top: '0px' });
   useEffect(() => {
@@ -47,12 +47,7 @@ const DialogBase = ({
       ref.current,
       parentElement
     );
-    console.log({
-      finalPosition,
-      positionProp,
-      ref: ref.current,
-      parentElement,
-    });
+
     setPosition(finalPosition);
   }, [parentElement, positionProp]);
   useOnClickOutside(ref, toggle, 'mousedown');
@@ -78,8 +73,8 @@ export const Dialog = ({
   content,
   visible: visibleProp = false,
   className,
+  position,
 }: PropsWithChildren<P>) => {
-  console.log({ content });
   if (Children.count(children) > 1)
     throw Error("Popover can't have more than one child");
 
@@ -89,7 +84,10 @@ export const Dialog = ({
     setValue: setInnerVisible,
   } = useToggle(visibleProp);
   const visibleFiltered = triggerable && innerVisible;
-  const visible = useDelayedUnmount(visibleFiltered, 500);
+  const visible = useDelayedUnmount(
+    visibleFiltered,
+    DIALOG_ANIMATION_LENGTH * 1000
+  );
   const popRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     setInnerVisible(visibleProp);
@@ -117,6 +115,7 @@ export const Dialog = ({
             parentElement: popRef.current,
             className,
             toggle: listener,
+            position,
           }}
         >
           {content}

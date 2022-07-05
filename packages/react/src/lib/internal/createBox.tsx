@@ -96,7 +96,6 @@ export const createBox = <T extends keyof HTMLElementTagNameMap>(Key: T) => {
         borderSize,
         borderRadius,
       ]);
-      console.log({ boxClassNames, props });
       return createElement(Key, {
         ...props,
         className: clsx(boxClassNames, props.className),

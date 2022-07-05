@@ -72,6 +72,7 @@ export const contract = {
       regular: 'font-regular',
       medium: 'font-medium',
       bold: 'font-bold',
+      heavy: 'font-heavy',
     },
   },
   spacing: {

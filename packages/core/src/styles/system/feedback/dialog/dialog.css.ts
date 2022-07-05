@@ -18,9 +18,11 @@ export const dialog = style({
 
 const invisible = {
   opacity: 0,
+  transform: 'translate(0px,24px)',
 };
 const visible = {
   opacity: 1,
+  transform: 'translate(0px,0px)',
 };
 
 export const dialogInAnimation = keyframes({

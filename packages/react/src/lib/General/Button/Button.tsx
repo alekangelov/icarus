@@ -31,15 +31,15 @@ type Props = PropsWithChildren<
 export const Button = forwardRef(
   (
     {
-      color,
-      size,
-      elevation,
+      color = 'primary',
+      size = 'medium',
+      elevation = 'md',
       fullWidth,
       floating,
-      radius,
+      radius = 'md',
       icon,
       iconPosition = 'left',
-      gap,
+      gap = 'md',
       disabled: isDisabled,
       ...props
     }: Props,

@@ -2,161 +2,128 @@ import { vars } from '../../../variables/index.css';
 import { dialogInAnimation, dialogOutAnimation } from './dialog.css';
 import { DialogPositions } from './types';
 
+type Position = {
+  top: string;
+  left: string;
+};
+
+export const DIALOG_ANIMATION_LENGTH = 0.26;
+
 const makeAnimation = (keyframes: string) =>
-  `${keyframes} 0.5s ${vars.transition.easing}`;
+  `${keyframes} ${DIALOG_ANIMATION_LENGTH}s ${vars.transition.easing}`;
 
 export const getDialogAnimation = (isMounting: boolean) => {
   return makeAnimation(isMounting ? dialogInAnimation : dialogOutAnimation);
 };
 
-const isOutOfBounds = (
+// const oposites = {
+//   left: 'right',
+//   right: 'left',
+//   top: 'bottom',
+//   bottom: 'top',
+// } as const;
+
+const getPositionForSide = (
   position: DialogPositions,
-  element: { left: number; top: number }
-) => {
-  const { left, top } = element;
-  console.log(`isOutOfBoundsInner: ${position}`, { left, top });
-
-  if (typeof window === 'undefined') return false;
-  // const { innerWidth, innerHeight } = window;
-  if (top < 0) return true;
-  if (left < 0) return true;
-  return false;
-};
-
-const getOtherPosition = (position: DialogPositions) => {
-  switch (position) {
-    case 'left':
-      return 'right';
-    case 'right':
-      return 'left';
-    case 'top':
-      return 'bottom';
-    case 'bottom':
-      return 'top';
-    default:
-      return 'left';
-  }
-};
-
-type Position = {
+  dialog: DOMRect,
+  element: DOMRect
+): {
   left: number;
   top: number;
-  position?: DialogPositions;
-};
-
-const addGutter = (
-  positionType: DialogPositions,
-  position: Position,
-  gutter: string
-) => {
-  switch (positionType) {
-    case 'left':
-      return {
-        top: `${position.top}px`,
-        left: `calc(${position.left}px - ${gutter})`,
-      };
-    case 'right':
-      return {
-        top: `${position.top}px`,
-        left: `calc(${position.left}px + ${gutter})`,
-      };
-    case 'top':
-      return {
-        left: `${position.left}px`,
-        top: `calc(${position.top}px - ${gutter})`,
-      };
-    case 'bottom':
-      return {
-        left: `${position.left}px`,
-        top: `calc(${position.top}px + ${gutter})`,
-      };
-    default:
-      return position;
-  }
-};
-
-export const getDialogPositionPrecursor = (
-  position: DialogPositions,
-  dialogRef: HTMLDivElement | null,
-  elementRef: HTMLElement | null
-) => {
-  let finalPosition: Position = {
-    top: 0,
+} => {
+  const xCenter = element.left + (element.width / 2 - dialog.width / 2);
+  console.log(dialog.width);
+  const yCenter = element.top + (element.height / 2 - dialog.height / 2);
+  let positionReturn = {
     left: 0,
+    top: 0,
   };
-  if (!dialogRef || !elementRef) return finalPosition;
-  const dialogRect = dialogRef.getBoundingClientRect();
-  const elementRect = elementRef.getBoundingClientRect();
   if (position === 'left') {
-    finalPosition = {
-      left: elementRect.left - dialogRect.width,
-      top: elementRect.top + elementRect.height / 2 - dialogRect.height / 2,
-    };
+    const left = element.left - dialog.width;
+    const top = yCenter;
+    positionReturn = { left, top };
   }
   if (position === 'right') {
-    finalPosition = {
-      left: elementRect.left + elementRect.width,
-      top: elementRect.top + elementRect.height / 2 - dialogRect.height / 2,
-    };
+    const left = element.left + element.width;
+    const top = yCenter;
+    positionReturn = { left, top };
   }
   if (position === 'top') {
-    finalPosition = {
-      left: elementRect.left + elementRect.width / 2 - dialogRect.width / 2,
-      top: elementRect.top - dialogRect.height,
-    };
+    const left = xCenter;
+    const top = element.top - dialog.height;
+    positionReturn = { left, top };
   }
   if (position === 'bottom') {
-    finalPosition = {
-      left: elementRect.left + elementRect.width / 2 - dialogRect.width / 2,
-      top: elementRect.top + elementRect.height,
-    };
+    const left = xCenter;
+    const top = element.top + element.height;
+    positionReturn = { left, top };
   }
-
-  if (isOutOfBounds(position, finalPosition)) {
-    finalPosition = getDialogPositionPrecursor(
-      getOtherPosition(position),
-      dialogRef,
-      elementRef
-    );
-    finalPosition = {
-      ...finalPosition,
-      position: getOtherPosition(position),
-    };
+  if (positionReturn.left <= 0) {
+    positionReturn.left = element.left;
   }
-  return finalPosition;
+  if (positionReturn.top <= 0) {
+    positionReturn.top = element.top;
+  }
+  return positionReturn;
 };
 
 export const getDialogPosition = (
   position: DialogPositions,
   dialogRef: HTMLDivElement | null,
   elementRef: HTMLElement | null
-): {
-  top: string;
-  left: string;
-} => {
-  const gutter = vars.spacing.md;
-  const positionPrecursor = getDialogPositionPrecursor(
-    position,
-    dialogRef,
-    elementRef
-  );
-  const calculatedPosition = addGutter(
-    positionPrecursor.position || position,
-    positionPrecursor,
-    gutter
-  );
-  const finalPosition = {
-    top:
-      typeof calculatedPosition.top !== 'string'
-        ? `${calculatedPosition.top}`
-        : calculatedPosition.top,
-    left:
-      typeof calculatedPosition.left !== 'string'
-        ? `${calculatedPosition.left}`
-        : calculatedPosition.left,
+): Position => {
+  if (typeof window === 'undefined' || !dialogRef || !elementRef)
+    return { top: '0px', left: '0px' };
+  const defaultGutter = vars.spacing.md;
+  const dialogRect = dialogRef.getBoundingClientRect();
+  const { height: dialogHeight, width: dialogWidth } = dialogRect;
+  const elementRect = elementRef.getBoundingClientRect();
+  const {
+    height: triggerHeight,
+    width: triggerWidth,
+    left: triggerOffsetX,
+    top: triggeroffsetY,
+  } = elementRect;
+  if (position === 'left') {
+    if (triggerOffsetX <= dialogWidth) {
+      position = 'right';
+    }
+  }
+  if (position === 'right') {
+    if (triggerOffsetX + triggerWidth >= window.innerWidth - dialogWidth) {
+      position = 'left';
+    }
+  }
+  if (position === 'top') {
+    if (triggeroffsetY <= dialogHeight) {
+      position = 'bottom';
+    }
+  }
+  if (position === 'bottom') {
+    if (triggeroffsetY + triggerHeight >= window.innerHeight - dialogHeight) {
+      position = 'top';
+    }
+  }
+
+  const finalPosition = getPositionForSide(position, dialogRect, elementRect);
+  const newPositions: Partial<Position> = {};
+  if (position === 'left') {
+    newPositions.left = `calc(${finalPosition.left}px - ${defaultGutter})`;
+  }
+  if (position === 'right') {
+    newPositions.left = `calc(${finalPosition.left}px + ${defaultGutter})`;
+  }
+  if (position === 'top') {
+    newPositions.top = `calc(${finalPosition.top}px - ${defaultGutter})`;
+  }
+  if (position === 'bottom') {
+    newPositions.top = `calc(${finalPosition.top}px + ${defaultGutter})`;
+  }
+  return {
+    top: `${finalPosition.top}px`,
+    left: `${finalPosition.left}px`,
+    ...newPositions,
   };
-  console.log({ calculatedPosition, finalPosition });
-  return finalPosition;
 };
 
 export const isClickOutside = <T extends HTMLElement>(
