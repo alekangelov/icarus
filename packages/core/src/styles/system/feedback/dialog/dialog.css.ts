@@ -12,7 +12,14 @@ export const dialog = style({
   maxWidth: '90%',
   boxShadow: `0 ${vars.elevation.md} ${vars.elevation.xl} calc(
     0px - ${vars.elevation.md} / 2
-  ) ${parseColor(vars.onColors.surface, 0.1)}`,
+  ) ${parseColor(vars.onColors.shadow, 0.1)}`,
+  selectors: {
+    'html.dark &': {
+      boxShadow: `0 ${vars.elevation.md} ${vars.elevation.xl} calc(
+        0px - ${vars.elevation.md} / 2
+      ) ${parseColor(vars.onColors.shadow, 1)}`,
+    },
+  },
 });
 
 const invisible = {
