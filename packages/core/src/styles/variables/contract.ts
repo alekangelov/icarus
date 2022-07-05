@@ -16,6 +16,7 @@ const colorContracts: {
     surface: 'surface',
     surfaceMd: 'surface-md',
     surfaceHv: 'surface-hv',
+    shadow: 'shadow',
   },
   on: {
     primary: 'on-primary',
@@ -27,6 +28,7 @@ const colorContracts: {
     surface: 'on-surface',
     surfaceMd: 'on-surface-md',
     surfaceHv: 'on-surface-hv',
+    shadow: 'shadow',
   },
   hover: {
     primary: 'primary-hv',
@@ -38,6 +40,7 @@ const colorContracts: {
     surface: 'surface-hv',
     surfaceMd: 'surface-md-hv',
     surfaceHv: 'surface-hv-hv',
+    shadow: 'shadow',
   },
   active: {
     primary: 'primary-ac',
@@ -49,6 +52,7 @@ const colorContracts: {
     surface: 'surface-ac',
     surfaceMd: 'surface-md-ac',
     surfaceHv: 'surface-hv-ac',
+    shadow: 'shadow',
   },
 };
 
@@ -102,7 +106,18 @@ export const contract = {
       lg: 'border-size-lg',
       xl: 'border-size-xl',
     },
-    color: colorContracts.default,
+    color: {
+      primary: 'border-primary',
+      secondary: 'border-secondary',
+      danger: 'border-danger',
+      success: 'border-success',
+      warning: 'border-warning',
+      info: 'border-info',
+      surface: 'border-surface',
+      surfaceMd: 'border-surface-md',
+      surfaceHv: 'border-surface-hv',
+      shadow: 'shadow',
+    },
   },
   elevation: {
     none: 'elevation-none',

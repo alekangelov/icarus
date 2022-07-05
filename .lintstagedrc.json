@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,jsx,tsx}": "yarn nx affected:lint",
+  "*.{js,ts,jsx,tsx}": "yarn nx affected:lint --base=main --head=HEAD",
   "*.{js,ts,css,scss,md}": "prettier --ignore-unknown --write"
 }

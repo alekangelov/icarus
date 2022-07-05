@@ -19,4 +19,5 @@ export const tooltip = style({
   background: parseColor(vars.onColors.surface, 0.7),
   color: parseColor(vars.colors.surface, 1),
   padding: `${vars.spacing.xs} ${vars.spacing.lg}`,
+  pointerEvents: 'none',
 });

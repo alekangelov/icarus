@@ -17,8 +17,13 @@ export const loadingModal = recipe({
     transform: 'translate(-50%, -50%)',
     padding: vars.spacing.xl,
     borderRadius: vars.spacing.xl,
-    boxShadow: `0 20px 50px -20px ${parseColor(vars.onColors.surface, 0.2)}`,
+    boxShadow: `0 20px 50px -20px ${parseColor(vars.colors.shadow, 0.2)}`,
     backdropFilter: 'blur(10px)',
+    selectors: {
+      'html.dark &': {
+        boxShadow: `0 20px 50px -20px ${parseColor(vars.colors.shadow, 1)}`,
+      },
+    },
   },
   variants: {
     fullscreen: {

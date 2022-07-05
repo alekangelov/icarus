@@ -23,6 +23,7 @@ import { useEventListener } from 'usehooks-ts';
 import { useToggle } from '../../internal/hooks/useToggle';
 import { Portal } from '../../internal/Portal';
 import { mergeRefs } from '../../internal/mergeRefs';
+import { getSingleChildMessage } from '../constants';
 type P2 = {
   content?: JSX.Element;
   visible?: boolean;
@@ -97,7 +98,7 @@ export const Dialog = forwardRef(
     ref: Ref<HTMLDivElement>
   ) => {
     if (Children.count(children) > 1)
-      throw Error("Popover can't have more than one child");
+      throw Error(getSingleChildMessage('Dialog'));
     const id = useRef(dialogId());
     const dialogRef = useRef<HTMLDivElement>(null);
     const {
@@ -108,13 +109,11 @@ export const Dialog = forwardRef(
       setTrue,
     } = useToggle(visibleProp || false);
     const visibleFiltered = triggerable && innerVisible;
-    console.log({ visibleFiltered, visibleProp });
-    const visible = useDelayedUnmount(
+    const newVisible =
       typeof visibleProp === 'boolean'
-        ? visibleProp || visibleFiltered
-        : visibleFiltered,
-      DIALOG_ANIMATION_LENGTH * 1000
-    );
+        ? visibleProp && visibleFiltered
+        : visibleFiltered;
+    const visible = useDelayedUnmount(newVisible, DIALOG_ANIMATION_LENGTH);
     const childRef = useRef<HTMLElement>(null);
     useEffect(() => {
       if (typeof visibleProp !== 'boolean') return;
@@ -123,9 +122,9 @@ export const Dialog = forwardRef(
     }, [visibleProp]);
 
     useEffect(() => {
-      onVisibleChange?.(visible);
+      onVisibleChange?.(newVisible);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [visible]);
+    }, [newVisible]);
 
     const onListener = useCallback(
       (event: MouseEvent) => {
@@ -168,7 +167,7 @@ export const Dialog = forwardRef(
             {...{
               id: id.current,
               ref: mergeRefs([ref, dialogRef]),
-              visible: visibleFiltered,
+              visible: newVisible,
               parentElement: childRef.current,
               className,
               toggle: toggleInnerVisible,

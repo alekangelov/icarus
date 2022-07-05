@@ -7,10 +7,10 @@ type Position = {
   left: string;
 };
 
-export const DIALOG_ANIMATION_LENGTH = 0.26;
+export const DIALOG_ANIMATION_LENGTH = 260;
 
 const makeAnimation = (keyframes: string) =>
-  `${keyframes} ${DIALOG_ANIMATION_LENGTH}s ${vars.transition.easing}`;
+  `${keyframes} ${DIALOG_ANIMATION_LENGTH}ms ${vars.transition.easing}`;
 
 export const getDialogAnimation = (isMounting: boolean) => {
   return makeAnimation(isMounting ? dialogInAnimation : dialogOutAnimation);

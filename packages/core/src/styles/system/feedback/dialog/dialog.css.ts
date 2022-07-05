@@ -17,7 +17,7 @@ export const dialog = style({
 
 const invisible = {
   opacity: 0,
-  transform: 'translate(0px,24px)',
+  transform: `translate(0px, calc(0px - ${vars.spacing.md}))`,
 };
 const visible = {
   opacity: 1,

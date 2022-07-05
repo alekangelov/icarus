@@ -14,6 +14,8 @@ import { Dialog } from '../Dialog';
 type PopoverProps = {
   title?: string;
   content?: JSX.Element;
+  visible?: boolean;
+  onVisibilityChange?: (visible: boolean) => void;
 };
 
 type PopConfirmProps = {
@@ -47,8 +49,14 @@ export const Popover = ({
   children,
   title,
   content,
+  visible,
+  onVisibilityChange,
 }: PropsWithChildren<PopoverProps>) => (
-  <Dialog content={<PopoverContent title={title} content={content} />}>
+  <Dialog
+    visible={visible}
+    onVisibleChange={onVisibilityChange}
+    content={<PopoverContent title={title} content={content} />}
+  >
     {children}
   </Dialog>
 );
@@ -108,7 +116,6 @@ export const PopConfirm = ({
   const [visible, setVisible] = useState(false);
   const onVisibleChange = useCallback(
     (e: boolean) => {
-      console.log({ e });
       setVisible(e);
     },
     [setVisible]

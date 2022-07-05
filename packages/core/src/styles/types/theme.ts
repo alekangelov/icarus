@@ -8,6 +8,7 @@ export type Colors = {
   surface: string;
   surfaceMd: string;
   surfaceHv: string;
+  shadow: string;
 };
 
 export type ColorVariations = keyof Colors;
