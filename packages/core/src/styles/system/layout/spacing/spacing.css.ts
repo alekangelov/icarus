@@ -8,6 +8,7 @@ const directions = ['row', 'column'];
 export const spacing = recipe({
   base: {
     display: 'flex',
+    width: '100%',
   },
   variants: {
     direction: directions.reduce(

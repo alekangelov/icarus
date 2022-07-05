@@ -24,7 +24,7 @@ const prepColor = (
     color = color.darken(0.1);
   }
   if (makeActive) {
-    color = color.darken(0.4);
+    color = color.darken(0.2);
   }
   return color
     .rgb()
@@ -55,8 +55,8 @@ const colorVars = {
     warning: prepColor(colors.onMdGrey),
     info: prepColor(colors.onSky),
     surface: prepColor(colors.onWhite),
-    surfaceMd: prepColor(colors.onGreyHv),
-    surfaceHv: prepColor(colors.onMdGrey),
+    surfaceMd: prepColor(colors.onMdGrey),
+    surfaceHv: prepColor(colors.onGreyHv),
   },
   hoverColors: {
     primary: prepColor(colors.blue, { makeHover: true }),

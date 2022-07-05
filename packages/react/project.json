@@ -18,7 +18,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/react/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["packages/react/**/*.{ts,tsx,js,jsx}"],
+        "fix": true
       }
     },
     "test": {

@@ -32,7 +32,6 @@ const getPositionForSide = (
   top: number;
 } => {
   const xCenter = element.left + (element.width / 2 - dialog.width / 2);
-  console.log(dialog.width);
   const yCenter = element.top + (element.height / 2 - dialog.height / 2);
   let positionReturn = {
     left: 0,

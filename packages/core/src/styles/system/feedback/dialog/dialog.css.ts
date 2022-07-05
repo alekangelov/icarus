@@ -8,10 +8,9 @@ export const dialog = style({
   left: 0,
   background: parseColor(vars.colors.surface, 1),
   zIndex: vars.zIndex.overlay,
-  padding: `${vars.spacing.md} ${vars.spacing.lg}`,
   borderRadius: vars.border.radius.md,
   maxWidth: '90%',
-  boxShadow: `0 20px ${vars.elevation.md} calc(
+  boxShadow: `0 ${vars.elevation.md} ${vars.elevation.xl} calc(
     0px - ${vars.elevation.md} / 2
   ) ${parseColor(vars.onColors.surface, 0.1)}`,
 });

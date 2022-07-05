@@ -7,12 +7,16 @@ export const popover = {
     display: 'flex',
     gap: vars.spacing.md,
     flexDirection: 'column',
+    maxWidth: 340,
+    padding: `${vars.spacing.xl} ${vars.spacing.xxl}`,
   }),
-  title: style({
-    fontSize: vars.font.size.md,
-    fontWeight: vars.font.weight.bold,
-    borderBottom: `1px solid ${parseColor(vars.onColors.surface, 0.1)}`,
-    paddingBottom: vars.spacing.md,
+  content: style({
+    lineHeight: '150%',
   }),
-  content: style({}),
 };
+
+export const tooltip = style({
+  background: parseColor(vars.onColors.surface, 0.7),
+  color: parseColor(vars.colors.surface, 1),
+  padding: `${vars.spacing.xs} ${vars.spacing.lg}`,
+});

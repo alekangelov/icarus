@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ColumnsDemo } from '../Grid/Grid.stories';
 import { Box } from './Box';
 
 export default {

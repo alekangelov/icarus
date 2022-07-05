@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { forEachInObject } from 'packages/core/src/helpers';
+import { forEachInObject } from '../../../../../src/helpers';
 
 export const aspectRatioClasses = (() => {
   const ratios = {

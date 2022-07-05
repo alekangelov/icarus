@@ -2,6 +2,7 @@ import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { getInitialClass } from '../../../../helpers';
 import { vars } from '../../../variables/index.css';
+import { percentageString } from '../../box/helpers/calcPercentage';
 import { parseColor } from '../../colors';
 import { createStyleFactory } from '../../factories/generic';
 import { createTransition } from '../../factories/transition';
@@ -19,6 +20,7 @@ export const button = recipe({
     cursor: 'pointer',
     position: 'relative',
     overflow: 'hidden',
+    fontWeight: vars.font.weight.bold,
     color: parseColor(`var(${textColorVar})`),
     backgroundColor: parseColor(`var(${colorVar})`),
     transition: createTransition(
@@ -54,26 +56,32 @@ export const button = recipe({
     size: {
       small: {
         fontSize: vars.font.size.sm,
+        letterSpacing: percentageString(-2, vars.font.size.sm),
         padding: `${vars.spacing.sm} ${vars.spacing.lg}`,
       },
       medium: {
         fontSize: vars.font.size.md,
+        letterSpacing: percentageString(2, vars.font.size.md),
         padding: `${vars.spacing.md} ${vars.spacing.xl}`,
       },
       large: {
         fontSize: vars.font.size.lg,
+        letterSpacing: percentageString(2, vars.font.size.lg),
         padding: `${vars.spacing.lg} ${vars.spacing.xxl}`,
       },
       smallSymmetric: {
         fontSize: vars.font.size.sm,
+        letterSpacing: percentageString(2, vars.font.size.sm),
         padding: `${vars.spacing.sm}`,
       },
       mediumSymmetric: {
         fontSize: vars.font.size.md,
+        letterSpacing: percentageString(2, vars.font.size.md),
         padding: `${vars.spacing.md}`,
       },
       largeSymmetric: {
         fontSize: vars.font.size.lg,
+        letterSpacing: percentageString(2, vars.font.size.lg),
         padding: `${vars.spacing.lg}`,
       },
     },

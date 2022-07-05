@@ -9,6 +9,9 @@ export type Colors = {
   surfaceMd: string;
   surfaceHv: string;
 };
+
+export type ColorVariations = keyof Colors;
+
 export interface Theme {
   colors: Colors;
   onColors: Colors;

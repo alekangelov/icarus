@@ -63,7 +63,9 @@ export const HGroup = forwardRef(
     }: PropsWithChildren<HGroupProps>,
     ref: Ref<HTMLElement>
   ) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const TitleTag = `h${titleLevel}` as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SubtitleTag = `h${subtitleLevel}` as any;
     return (
       <hgroup {...props} ref={ref}>

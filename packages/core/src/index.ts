@@ -5,3 +5,4 @@ export * from './styles/system';
 export * from './styles/variables/breakpoints';
 export { cleanProps, mergeStyles, clsx } from './helpers';
 export { createId } from './helpers/createId';
+export type { ColorVariations as Colors } from './styles/types/theme';
