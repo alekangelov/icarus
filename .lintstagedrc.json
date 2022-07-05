@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,jsx,tsx}": "eslint --fix",
+  "*.{js,ts,jsx,tsx}": "yarn nx affected:lint",
   "*.{js,ts,css,scss,md}": "prettier --ignore-unknown --write"
 }
