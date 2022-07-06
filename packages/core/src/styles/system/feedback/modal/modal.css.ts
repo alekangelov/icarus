@@ -92,7 +92,7 @@ const header = style({
   marginBottom: vars.spacing.xl,
   padding: `${vars.spacing.lg} ${vars.spacing.xxl}`,
   borderBottom: `1px solid ${parseColor(vars.onColors.surface, 0.1)}`,
-  trasition: createTransition('background', 'backdropFilter'),
+  transition: createTransition('background', 'backdropFilter'),
   selectors: {
     [`${body.maximized} & `]: {
       position: 'sticky',
