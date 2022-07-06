@@ -1,5 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '../../../variables/index.css';
+import { parseColor } from '../../colors';
 import { createStyleFactory } from '../../factories/generic';
 
 export const icon = recipe({
@@ -15,12 +16,14 @@ export const icon = recipe({
     })),
     color: {
       ...createStyleFactory(vars.colors, (value) => ({
-        color: value,
+        color: parseColor(value),
+        fill: parseColor(value),
       })),
       ...createStyleFactory(
         vars.onColors,
         (value) => ({
-          color: value,
+          color: parseColor(value),
+          fill: parseColor(value),
         }),
         'on'
       ),

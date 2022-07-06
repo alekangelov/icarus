@@ -141,7 +141,7 @@ const colorVarsDark = {
 const defaultGlobalVars = {
   font: {
     size: {
-      xs: '0.8rem',
+      xs: '0.5rem',
       sm: '0.9rem',
       md: '1rem',
       lg: '1.5rem',

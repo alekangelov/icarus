@@ -54,6 +54,14 @@ export const button = recipe({
       } as any;
     }),
     size: {
+      xSmall: {
+        fontSize: vars.font.size.xs,
+        padding: `${vars.spacing.xs} ${vars.spacing.xs}`,
+      },
+      xSmallSymmetric: {
+        fontSize: vars.font.size.xs,
+        padding: `${vars.spacing.xs} ${vars.spacing.xs}`,
+      },
       small: {
         fontSize: vars.font.size.sm,
         letterSpacing: percentageString(-2, vars.font.size.sm),

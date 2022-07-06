@@ -48,5 +48,8 @@ export const createStyleFactory = <
   if (prefix) {
     return transformKeysInObject(newObject, prefix);
   }
-  return newObject;
+  return newObject as unknown as Record<
+    `${Prefix}${keyof T extends string ? keyof T : never}`,
+    X
+  >;
 };

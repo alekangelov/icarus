@@ -6,7 +6,7 @@ export const dialog = style({
   position: 'absolute',
   top: 0,
   left: 0,
-  background: parseColor(vars.colors.surface, 1),
+  background: parseColor(vars.colors.surfaceMd, 1),
   zIndex: vars.zIndex.overlay,
   borderRadius: vars.border.radius.md,
   maxWidth: '90%',
@@ -17,7 +17,7 @@ export const dialog = style({
     'html.dark &': {
       boxShadow: `0 ${vars.elevation.md} ${vars.elevation.xl} calc(
         0px - ${vars.elevation.md} / 2
-      ) ${parseColor(vars.onColors.shadow, 1)}`,
+      ) ${parseColor(vars.onColors.shadow, 0.5)}`,
     },
   },
 });

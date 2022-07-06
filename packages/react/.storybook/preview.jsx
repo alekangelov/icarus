@@ -3,8 +3,9 @@ import { IcarusProvider } from '../src/lib/Provider/Provider';
 
 export const decorators = [
   (Story) => {
-    const [currentTheme, setCurrentTheme] = useState('light');
+    const [currentTheme, setCurrentTheme] = useState('dark');
     useEffect(() => {
+      if (typeof document === 'undefined') return;
       if (currentTheme === 'light')
         document.querySelector('html').classList.remove('dark');
       else document.querySelector('html').classList.add('dark');

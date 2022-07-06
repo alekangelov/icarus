@@ -10,7 +10,7 @@ export const loadingModal = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    background: parseColor(vars.colors.surface, 0.7),
+    background: parseColor(vars.colors.surfaceMd, 0.7),
     transition: createTransition('transform', 'opacity'),
     top: '50%',
     left: '50%',
