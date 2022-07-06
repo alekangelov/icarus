@@ -12,6 +12,8 @@ import { CloseIcon, MaximizeIcon } from '../../Icons';
 import { useDelayedUnmount } from '../../internal/hooks/useDelayedUnmount';
 import { Portal } from '../../internal/Portal';
 import { Box } from '../../Layout/Box';
+import { Container } from '../../Layout/Container';
+import { Spacing } from '../../Layout/Spacing';
 
 type ModalFooterProps = {
   ok?: {
@@ -81,6 +83,9 @@ export const Modal = forwardRef(
       visibleProp || false,
       MODAL_ANIMATION_TIMING
     );
+    const contentJsx = (
+      <div className={clsx(modal.content, 'modal-content')}>{content}</div>
+    );
     if (!visible) return null;
     return (
       <Portal>
@@ -103,11 +108,21 @@ export const Modal = forwardRef(
             )}
           >
             <div className={clsx(modal.header, 'modal-header')}>
-              {title && <Heading level="4">{title}</Heading>}
-              <div className={clsx(modal.actions.base, 'modal-actions')}>
+              {title && (
+                <Heading level="4" className={clsx(modal.header.title)}>
+                  {title}
+                </Heading>
+              )}
+              <Spacing
+                gap="md"
+                className={clsx(modal.actions.base, 'modal-actions')}
+              >
                 {maximizable && (
-                  <button
+                  <Button
+                    radius="round"
+                    color="success"
                     onClick={toggleMaximized}
+                    size="small"
                     className={clsx(modal.actions.button, 'modal-maximize')}
                   >
                     <MaximizeIcon
@@ -115,18 +130,19 @@ export const Modal = forwardRef(
                       color="onsurface"
                       size="xs"
                     />
-                  </button>
+                  </Button>
                 )}
-                <button className={clsx(modal.actions.button, 'modal-close')}>
+                <Button
+                  radius="round"
+                  color="danger"
+                  size="small"
+                  className={clsx('modal-close')}
+                >
                   <CloseIcon color="onsurface" size="xs" />
-                </button>
-              </div>
+                </Button>
+              </Spacing>
             </div>
-            {content && (
-              <div className={clsx(modal.content, 'modal-content')}>
-                {content}
-              </div>
-            )}
+            {content && contentJsx}
             {footer && <ModalFooter ok={ok} cancel={ok} />}
           </div>
         </div>

@@ -9,85 +9,26 @@ export default {
 const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
 export const Primary = Template.bind({});
-
+const Elem = () => (
+  <div>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
+    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
+    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
+    architecto?
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+);
 const Content = () => (
   <>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br /> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non
-    culpa eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br /> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non
-    culpa eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto non culpa
-    eaque omnis nesciunt enim, ipsa voluptas laudantium consectetur harum
-    laborum exercitationem, fuga dignissimos dolor, excepturi velit et ut
-    architecto?
-    <br />
-    <br />
+    {Array.from({ length: 20 }).map((e, i) => (
+      <Elem key={i + 'item'} />
+    ))}
   </>
 );
 

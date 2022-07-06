@@ -29,7 +29,6 @@ const body = {
     position: 'absolute',
     maxWidth: '640px',
     width: '90%',
-    padding: vars.spacing.xxl,
     background: parseColor(vars.colors.surfaceMd),
     borderRadius: vars.border.radius.lg,
     boxShadow: `0 50px 60px -25px ${parseColor(vars.colors.shadow, 0.1)}`,
@@ -41,6 +40,13 @@ const body = {
     margin: `${vars.spacing.lg} auto`,
     zIndex: vars.zIndex.modal,
     overflow: 'hidden',
+    transition: createTransition(
+      'width',
+      'height',
+      'maxWidth',
+      'maxHeight',
+      'margin'
+    ),
   }),
   maximized: style({
     overflow: 'auto',
@@ -49,42 +55,33 @@ const body = {
     maxWidth: '100%',
     height: '100%',
     margin: 0,
+    paddingTop: 0,
+    padding: 0,
+    borderRadius: '0px',
   }),
 };
 
 const actions = {
   base: style({
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: vars.spacing.md,
+    top: vars.spacing.md,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    selectors: {
+      [`${body.maximized} & `]: {
+        position: 'relative',
+        maxWidth: 'max-content',
+        top: 'auto',
+        right: 'auto',
+      },
+    },
   }),
   rule: style({
     width: '1px',
     height: '100%',
     background: parseColor(vars.colors.surfaceMd),
-  }),
-  button: style({
-    width: '32px',
-    height: '32px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '0',
-    border: 'none',
-    background: parseColor(vars.colors.surfaceHv),
-    cursor: 'pointer',
-    transition: createTransition('background'),
-    selectors: {
-      '&:hover': {
-        background: parseColor(vars.colors.surfaceHv, 0),
-      },
-      '& + &': {
-        borderLeft: `1px solid ${parseColor(vars.onColors.surface, 0.1)}`,
-      },
-    },
   }),
 };
 
@@ -93,12 +90,18 @@ const header = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   marginBottom: vars.spacing.xl,
+  padding: `${vars.spacing.lg} ${vars.spacing.xxl}`,
+  borderBottom: `1px solid ${parseColor(vars.onColors.surface, 0.1)}`,
+  trasition: createTransition('background', 'backdropFilter'),
   selectors: {
     [`${body.maximized} & `]: {
       position: 'sticky',
       top: 0,
       left: 0,
       width: '100%',
+      padding: `${vars.spacing.lg} ${vars.spacing.xxl}`,
+      background: parseColor(vars.colors.surfaceHv, 0.5),
+      backdropFilter: 'blur(10px)',
     },
   },
 });
@@ -120,13 +123,23 @@ const mask = {
   }),
 };
 
+const content = style({
+  padding: `${vars.spacing.lg} ${vars.spacing.xxl}`,
+  selectors: {
+    [`${body.maximized} & `]: {
+      padding: 0,
+      margin: '0 auto',
+    },
+  },
+});
+
 export const modal = {
   actions,
   mask: mask.base,
   maskMaximized: mask.maximized,
   body: body.base,
   bodyMaximized: body.maximized,
-  content: style({}),
+  content,
   header,
   footer: style({}),
   animation: {
